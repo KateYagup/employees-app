@@ -18,8 +18,9 @@ const workersSlice = createSlice({
     },
     reducers: {
         filterPosition(state, action) {
-            // console.log('filterPosition');
-            state.workers = state.workers.filter(worker => (worker.position === "analyst"));
+            fetchWorkers();
+            console.log(action.payload);
+            state.workers = state.workers.filter(worker => (worker.position === action.payload));
         }
     },
     extraReducers(builder) {
@@ -33,5 +34,5 @@ const workersSlice = createSlice({
     }
 })
 
-const { filterPosition } = workersSlice.actions;
+export const { filterPosition } = workersSlice.actions;
 export default workersSlice.reducer;

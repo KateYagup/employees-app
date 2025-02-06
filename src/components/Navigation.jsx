@@ -20,12 +20,12 @@ const Navigation = () => {
             </div>
             <div className='positions'>
                 <a href="#" className="filterPosition">Все</a>
-                <a href="#" className="filterPosition">Designers</a>
-                <a href="#" className="filterPosition" onClick={() => dispatch(filterPosition())}>Analyst</a>
-                <a href="#" className="filterPosition">Managers</a>
-                <a href="#" className="filterPosition">iO</a>
+                <a href="#" className="filterPosition" onClick={() => dispatch(filterPosition('designers'))} > Designers</a>
+                <a href="#" className="filterPosition" onClick={() => dispatch(filterPosition('analyst'))}>Analyst</a>
+                <a href="#" className="filterPosition" onClick={() => dispatch(filterPosition('managers'))}>Managers</a>
+                <a href="#" className="filterPosition" onClick={() => dispatch(filterPosition('iO'))}>iO</a>
             </div>
-        </div>
+        </div >
     )
 }
 
