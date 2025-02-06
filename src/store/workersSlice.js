@@ -18,7 +18,7 @@ const workersSlice = createSlice({
     },
     reducers: {
         filterPosition(state, action) {
-            fetchWorkers();
+            // fetchWorkers();
             console.log(action.payload);
             state.workers = state.workers.filter(worker => (worker.position === action.payload));
         }

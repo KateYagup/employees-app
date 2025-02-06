@@ -1,12 +1,8 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { filterPosition } from '../store/workersSlice';
 
-const Navigation = () => {
+const Navigation = ({ filterOnPosition }) => {
     const dispatch = useDispatch();
-    const handleAnalyst = () => {
-        console.log('handleAnalyst');
-    }
 
     return (
         <div className='navigationBar'>
@@ -19,11 +15,12 @@ const Navigation = () => {
                 </div>
             </div>
             <div className='positions'>
-                <a href="#" className="filterPosition">Все</a>
-                <a href="#" className="filterPosition" onClick={() => dispatch(filterPosition('designers'))} > Designers</a>
-                <a href="#" className="filterPosition" onClick={() => dispatch(filterPosition('analyst'))}>Analyst</a>
-                <a href="#" className="filterPosition" onClick={() => dispatch(filterPosition('managers'))}>Managers</a>
-                <a href="#" className="filterPosition" onClick={() => dispatch(filterPosition('iO'))}>iO</a>
+                <a href="#" className="filterPosition" data-pos='all' onClick={(e) => filterOnPosition(e.target.dataset.pos)}>Все</a>
+                <a href="#" className="filterPosition" data-pos='designer' onClick={(e) => filterOnPosition(e.target.dataset.pos)} > Designers</a>
+                <a href="#" className="filterPosition" data-pos='analyst' onClick={(e) => filterOnPosition(e.target.dataset.pos)}>Analyst</a>
+                <a href="#" className="filterPosition" data-pos='manager' onClick={(e) => filterOnPosition(e.target.dataset.pos)}>Managers</a>
+                <a href="#" className="filterPosition" data-pos='android' onClick={(e) => filterOnPosition(e.target.dataset.pos)}>iO</a>
+                <a href="#" className="filterPosition" data-pos='android' onClick={(e) => filterOnPosition(e.target.dataset.pos)}>Android</a>
             </div>
         </div >
     )
