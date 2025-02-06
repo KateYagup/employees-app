@@ -6,97 +6,79 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.title {
-  font-size: 24px;
-  text-transform: uppercase;
-  text-align: center;
+.block {
+  height: 44px;
+  border: dashed aqua 1px;
+  &:hover {
+    border: solid red 1px;
+  }
 }
 
-.todo-list {
-  display: flex;
-  flex-direction: column;
-  margin-top: 32px;
-  background-color: coral;
-  border-radius: 8px;
-  padding: 8px;
-  max-width: 600px;
+.refresh {
+  border: dashed aqua 1px;
+  width: 375px;
   margin: auto;
+}
+
+.header {
+  height: 52px;
+  padding: 6px 16px;
+  border: dashed aqua 1px;
+}
+.content {
+  border: dashed blue 1px;
+  height: 40px;
+  padding: 8px 12px;
+}
+.user {
+  height: 80px;
+  border: solid blueviolet 1px;
+  display: flex;
 }
 
 .list {
-  margin: 0;
-  padding: 0;
   list-style-type: none;
-  margin: auto;
-  width: 100%;
+  border: solid blueviolet 1px;
+  padding: 0;
 }
 
-.list-item {
+.avatar {
+  height: 84px;
+  width: 88px;
+}
+
+.userName {
+  //styleName: Headline Medium;
+  padding: 3px 0;
+  font-family: Inter;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+}
+.userPosition {
+  //styleName: Caption 1 Regular;
+  font-family: Inter;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 16px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+}
+
+.userInfo {
+  padding: 7px;
+}
+
+.positions {
   display: flex;
   align-items: center;
-  height: 40px;
-  border-radius: 8px;
-  background-color: wheat;
-  margin-bottom: 8px;
-  padding: 8px;
-
-  &:last-child {
-    margin-bottom: 0;
-  }
-
-  &_done {
-    opacity: 0.7;
-
-    .list-item__text {
-      text-decoration: line-through;
-    }
-  }
-
-  &__checkbox {
-    margin-right: 8px;
-  }
-
-  &__delete-btn {
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    outline: none;
-    cursor: pointer;
-    background: transparent;
-    border: none;
-    margin-left: auto;
-    text-decoration: none;
-    padding: 0;
-    transform: rotate(45deg);
-    font-size: 18px;
-    line-height: 24px;
-    text-align: center;
-    opacity: 0.7;
-
-    &::before {
-      content: '+';
-    }
-  }
 }
-
-.btn {
-  height: 32px;
-  min-width: 64px;
-  border: 3px solid #ccc;
-  outline: none;
-  cursor: pointer;
-  border-radius: 8px;
-  margin-left: 16px;
-}
-
-.create-task {
-  display: flex;
-  margin-bottom: 8px;
-
-  &__input {
-    height: 32px;
-    border: 3px solid #ccc;
-    border-radius: 8px;
-    flex: 1;
-  }
+.filterPosition {
+  padding: 8px 12px;
+  text-decoration: none;
+  color: #000;
 }
