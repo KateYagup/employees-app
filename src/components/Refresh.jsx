@@ -4,30 +4,64 @@ import WorkersList from './WorkersList';
 import { connect } from 'react-redux';
 import { fetchWorkers } from "../store/workersSlice";
 import { useSelector, useDispatch } from "react-redux";
+import SortWindow from './SortWindow';
+import { BrowserRouter, Route, Switch, Link, Outlet } from 'react-router-dom';
+import WorkerData from './WorkerData';
 
 const Refresh = () => {
     const workers = useSelector(state => state.workers.workers);
+    const [prof, setProf] = useState('');
+    const [searchText, setSearchText] = useState('')
     const dispatch = useDispatch();
-    const [employees, setEmployees] = useState([]);
+
+    const handleSearch = (text) => {
+        setSearchText(text);
+        console.log(text);
+        console.log(workers.filter(({ name, tag }) => [name, tag].some(field => field.includes(text))))
+        // console.log(workers.filter(worker => worker.name.includes(text)));
+        return workers.filter(({ name, tag }) => [name, tag].some(field => field.includes(text)));
+    }
 
     useEffect(() => {
         dispatch(fetchWorkers());
-        // setEmployees(workers);
     }, [dispatch]);
 
     const filterOnPosition = text => {
         console.log(text);
         if (text === 'all') {
-            return setEmployees(workers);
+            return setProf('');
         }
-        const formPos = workers.filter(employee => employee.position === text);
-        setEmployees(formPos);
+        setProf(text);
+        console.log(prof);
     }
 
+    // const filteredWorkers = prof ? workers.filter(employee => employee.position === prof) : workers;
+
+    let filteredWorkers = workers;
+    if (prof && !searchText) filteredWorkers = workers.filter(employee => employee.position === prof)
+    else if (searchText) filteredWorkers = workers.filter(({ name, tag }) => [name, tag].some(field => field.includes(searchText)));
+    else filteredWorkers = workers;
+
     return (
+
         <div className='refresh'>
-            <Navigation filterOnPosition={filterOnPosition} />
-            <WorkersList workers={employees} />
+            <BrowserRouter>
+                <Route exact path='/'>
+                    <Navigation
+                        filterOnPosition={filterOnPosition}
+                        searchText={searchText}
+                        setSearchText={setSearchText}
+                        handleSearch={handleSearch}
+                    />
+                </Route>
+                <Route exact path='/'>
+                    <WorkersList workers={filteredWorkers} />
+                </Route>
+                <Route path='/d:id'>
+                    <WorkerData />
+                </Route>
+                {/* <SortWindow /> */}
+            </BrowserRouter>
         </div>
     )
 }

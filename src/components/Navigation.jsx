@@ -1,17 +1,19 @@
 import React from "react";
-import { useDispatch } from "react-redux";
 
-const Navigation = ({ filterOnPosition }) => {
-    const dispatch = useDispatch();
-
+const Navigation = ({ filterOnPosition, searchText, setSearchText, handleSearch }) => {
     return (
         <div className='navigationBar'>
             <div className='statusBar block'>
-                !!!
+                Поиск
             </div>
             <div className='header'>
                 <div className='content'>
-                    <input type="text" />
+                    <div className="search"> </div>
+                    <input type="text"
+                        value={searchText}
+                        onChange={(e) => handleSearch(e.target.value)}
+                    />
+                    <div className="menu" > </div>
                 </div>
             </div>
             <div className='positions'>
