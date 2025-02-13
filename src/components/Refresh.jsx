@@ -43,7 +43,6 @@ const Refresh = () => {
     else filteredWorkers = workers;
 
     return (
-
         <div className='refresh'>
             <BrowserRouter>
                 <Route exact path='/'>
@@ -57,7 +56,7 @@ const Refresh = () => {
                 <Route exact path='/'>
                     <WorkersList workers={filteredWorkers} />
                 </Route>
-                <Route path='/d'>
+                <Route path='/employee/:id'>
                     <WorkerData />
                 </Route>
                 {/* <SortWindow /> */}

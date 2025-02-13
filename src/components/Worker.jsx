@@ -15,7 +15,7 @@ const Worker = ({ name, avatar, position }) => {
                     </Link>
                 </div>
                 <div className='userInfo'>
-                    <Link to='/d'>id {id}</Link>
+                    <Link to='/employee/:id'>id </Link>
                     <div className='userName'>{name}</div>
                     <div className='userPosition'>{position}</div>
                 </div>
