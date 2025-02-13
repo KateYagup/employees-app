@@ -1,10 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
-const Worker = ({ id, name, avatar, position }) => {
+const Worker = ({ name, avatar, position }) => {
     // console.log(avatar);
     // let params = useParams();
-    // const { id } = params;
+    // const { id } = useParams();
+
     return (
         <li>
             <div className="user">
@@ -14,7 +15,7 @@ const Worker = ({ id, name, avatar, position }) => {
                     </Link>
                 </div>
                 <div className='userInfo'>
-                    <Link to='/d'>{name}</Link>
+                    <Link to='/d'>id {id}</Link>
                     <div className='userName'>{name}</div>
                     <div className='userPosition'>{position}</div>
                 </div>

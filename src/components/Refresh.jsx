@@ -57,7 +57,7 @@ const Refresh = () => {
                 <Route exact path='/'>
                     <WorkersList workers={filteredWorkers} />
                 </Route>
-                <Route path='/d:id'>
+                <Route path='/d'>
                     <WorkerData />
                 </Route>
                 {/* <SortWindow /> */}
