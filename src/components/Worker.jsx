@@ -1,10 +1,7 @@
 import React from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-const Worker = ({ name, avatar, position }) => {
-    // console.log(avatar);
-    // let params = useParams();
-    // const { id } = useParams();
+const Worker = ({ id, name, avatar, position }) => {
 
     return (
         <li>
@@ -15,7 +12,7 @@ const Worker = ({ name, avatar, position }) => {
                     </Link>
                 </div>
                 <div className='userInfo'>
-                    <Link to='/employee/:id'>id </Link>
+                    <Link to={`/employee/${id}`}>{id} </Link>
                     <div className='userName'>{name}</div>
                     <div className='userPosition'>{position}</div>
                 </div>

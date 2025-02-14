@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Navigation from './Navigation';
 import WorkersList from './WorkersList';
-import { connect } from 'react-redux';
 import { fetchWorkers } from "../store/workersSlice";
 import { useSelector, useDispatch } from "react-redux";
-import SortWindow from './SortWindow';
-import { BrowserRouter, Route, Switch, Link, Outlet } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 import WorkerData from './WorkerData';
 
 const Refresh = () => {
