@@ -1,17 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import Navigation from './components/Navigation';
 import WorkersList from './components/WorkersList';
-import { fetchWorkers } from "./store/workersSlice";
+import { fetchWorkers, initiateWorkersTransformed } from "./store/workersSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { BrowserRouter, Route } from 'react-router-dom';
 import WorkerData from './components/WorkerData';
+import { filterPositionAnalyst } from "./store/workersSlice";
 
 
 const App = () => {
     const workers = useSelector(state => state.workers.workers);
-    const [prof, setProf] = useState('');
+    const workersTransormed = useSelector(state => state.workers.workers);
+    const [prof, setProf] = useState(''); // Это, наверное, не нужно
     const [searchText, setSearchText] = useState('')
     const dispatch = useDispatch();
+
+    const handlePosAnalyst = () => useDispatch(filterPositionAnalyst(searchText));
 
     const handleSearch = (text) => {
         setSearchText(text);
@@ -23,6 +27,7 @@ const App = () => {
 
     useEffect(() => {
         dispatch(fetchWorkers());
+        // dispatch(initiateWorkersTransformed());
     }, [dispatch]);
 
     const filterOnPosition = text => {
@@ -50,10 +55,11 @@ const App = () => {
                         searchText={searchText}
                         setSearchText={setSearchText}
                         handleSearch={handleSearch}
+                        handlePosAnalyst={handlePosAnalyst}
                     />
                 </Route>
                 <Route exact path='/'>
-                    <WorkersList workers={filteredWorkers} />
+                    <WorkersList workers={workersTransormed} />
                 </Route>
                 <Route path='/employee/:id'>
                     <WorkerData />
@@ -62,22 +68,5 @@ const App = () => {
         </div>
     )
 };
-
-
-
-// import React from 'react';
-// import { Provider } from 'react-redux';
-// import Refresh from './components/Refresh';
-// import store from './store';
-
-// const App = () => {
-//     return (
-//         <Provider store={store}>
-//             <Refresh />
-//         </Provider>
-//     )
-// };
-
-
 
 export default App;

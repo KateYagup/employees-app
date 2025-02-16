@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 const baseUrl = 'https://66a0f8b17053166bcabd894e.mockapi.io/api/workers';
 
+
 export const fetchWorkers = createAsyncThunk(
     'workers/fetchWorkers',
     async function () {
@@ -15,12 +16,21 @@ const workersSlice = createSlice({
     name: 'workers',
     initialState: {
         workers: [],
+        workersTransormed: [],
     },
     reducers: {
-        filterPosition(state, action) {
+        initiateWorkersTransformed(state, action) {
+            state.workersTransormed = state.workers;
+        },
+        filterPositionAnalyst(state, action) {
             // fetchWorkers();
+            console.log(state);
+            console.log(action);
+            console.log('filterPositionAnalyst');
             console.log(action.payload);
-            state.workers = state.workers.filter(worker => (worker.position === action.payload));
+            // state.workersTransormed = state.workers.filter(worker => (worker.position === 'analyst'));
+            // state.workersTransormed.length = 0;
+            // state.workersTransormed.push(state.workers.filter(worker => (worker.position === 'analyst')));
         }
     },
     extraReducers(builder) {
@@ -34,5 +44,5 @@ const workersSlice = createSlice({
     }
 })
 
-export const { filterPosition } = workersSlice.actions;
+export const { filterPositionAnalyst } = workersSlice.actions;
 export default workersSlice.reducer;

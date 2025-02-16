@@ -1,6 +1,10 @@
 import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { filterPositionAnalyst } from "../store/workersSlice";
 
-const Navigation = ({ filterOnPosition, searchText, setSearchText, handleSearch }) => {
+const Navigation = ({ filterOnPosition, searchText, setSearchText, handleSearch, handlePosAnalyst }) => {
+    const dispatch = useDispatch();
+
     return (
         <div className='navigationBar'>
             <div className='statusBar block'>
@@ -24,6 +28,8 @@ const Navigation = ({ filterOnPosition, searchText, setSearchText, handleSearch 
                 <a href="#" className="filterPosition" data-pos='android' onClick={(e) => filterOnPosition(e.target.dataset.pos)}>iO</a>
                 <a href="#" className="filterPosition" data-pos='android' onClick={(e) => filterOnPosition(e.target.dataset.pos)}>Android</a>
             </div>
+            {/* <button onClick={dispatch(filterPositionAnalyst())}>analyst</button> */}
+            <button onClick={handlePosAnalyst}>analyst</button>
         </div >
     )
 }

@@ -5,8 +5,7 @@ import moment from 'moment';
 
 const WorkerData = () => {
     const { filterOnPosition } = useParams();
-    console.log('filterOnPosition');
-    console.log(filterOnPosition);
+    const { id } = useParams();
     const employee = useSelector((state) =>
         state.workers.workers.find((worker) => worker.id === id));
     console.log(employee);
