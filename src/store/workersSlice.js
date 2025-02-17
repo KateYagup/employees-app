@@ -16,24 +16,6 @@ const workersSlice = createSlice({
     name: 'workers',
     initialState: {
         workers: [],
-        workersTransormed: [],
-    },
-    reducers: {
-        initiateWorkersTransformed(state, action) {
-            state.workersTransormed = state.workers;
-        },
-        filterPositionAnalyst(state, action) {
-            // fetchWorkers();
-            console.log(state);
-            console.log(action);
-            console.log('filterPositionAnalyst');
-            console.log(action.payload);
-            state.workersTransormed = state.workers.filter(worker => (worker.position === 'analyst'));
-            console.log(state.workersTransormed);
-            console.log(state.workers);
-            // state.workersTransormed.length = 0;
-            // state.workersTransormed.push(state.workers.filter(worker => (worker.position === 'analyst')));
-        }
     },
     extraReducers(builder) {
         builder.addCase(fetchWorkers.pending, (state) => {
