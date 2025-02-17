@@ -28,7 +28,9 @@ const workersSlice = createSlice({
             console.log(action);
             console.log('filterPositionAnalyst');
             console.log(action.payload);
-            // state.workersTransormed = state.workers.filter(worker => (worker.position === 'analyst'));
+            state.workersTransormed = state.workers.filter(worker => (worker.position === 'analyst'));
+            console.log(state.workersTransormed);
+            console.log(state.workers);
             // state.workersTransormed.length = 0;
             // state.workersTransormed.push(state.workers.filter(worker => (worker.position === 'analyst')));
         }

@@ -15,7 +15,7 @@ const App = () => {
     const [searchText, setSearchText] = useState('')
     const dispatch = useDispatch();
 
-    const handlePosAnalyst = () => useDispatch(filterPositionAnalyst(searchText));
+    const handlePosAnalyst = () => dispatch(filterPositionAnalyst(searchText));
 
     const handleSearch = (text) => {
         setSearchText(text);
