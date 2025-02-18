@@ -1,12 +1,16 @@
 import React from "react";
 
-const Navigation = ({ filterOnPosition, searchText, handleSearch, handlePosAnalyst }) => {
+const Navigation = ({ filterOnPosition, searchText, handleSearch, handleSubmit, handlePosAnalyst }) => {
 
     return (
         <div className='navigationBar'>
             <div className='statusBar block'>
                 Поиск
             </div>
+            <form autoComplete='off' onSubmit={handleSubmit}>
+                <input type="search" name="search" />
+                <input type="submit" value="Search" />
+            </form>
             <div className='header'>
                 <div className='content'>
                     <div className="search"> </div>

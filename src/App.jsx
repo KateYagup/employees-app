@@ -51,11 +51,9 @@ const App = () => {
 
     return (
         <div className='refresh'>
-            <form autoComplete='off' onSubmit={handleSubmit}>
-                <input type="search" name="search" />
-                <input type="submit" value="Search" />
-            </form>
+
             <BrowserRouter>
+
                 <Route exact path='/'>
                     <Navigation
                         filterOnPosition={filterOnPosition}
@@ -63,6 +61,7 @@ const App = () => {
                         setSearchText={setSearchText}
                         handleSearch={handleSearch}
                         handlePosAnalyst={handlePosAnalyst}
+                        handleSubmit={handleSubmit}
                     />
                 </Route>
                 <Route exact path='/'>
