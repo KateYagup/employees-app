@@ -1,6 +1,14 @@
 import React from "react";
+import { useSearchParams } from 'react-router-dom';
 
-const Navigation = ({ filterOnPosition, searchText, handleSearch, handleSubmit, handlePosAnalyst }) => {
+const Navigation = ({ filterOnPosition, searchText, handleSearch }) => {
+    const [searchParams, setSearchParams] = useSearchParams();
+    const postQuery = searchParams.get('post') || '';
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const query = form.search.value;
+        setSearchParams({ post: query });
+    }
 
     return (
         <div className='navigationBar'>

@@ -9,18 +9,18 @@ import { filterPositionAnalyst } from "./store/workersSlice";
 
 
 const App = () => {
-    const [searchParams, setSearchParams] = useSearchParams();
+    // const [searchParams, setSearchParams] = useSearchParams();
     const workers = useSelector(state => state.workers.workers);
     const [prof, setProf] = useState(''); // Это, наверное, не нужно
     const [searchText, setSearchText] = useState('')
     const dispatch = useDispatch();
 
-    const postQuery = searchParams.get('post') || '';
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const query = form.search.value;
-        setSearchParams({ post: query });
-    }
+    // const postQuery = searchParams.get('post') || '';
+    // const handleSubmit = (e) => {
+    //     e.preventDefault();
+    //     const query = form.search.value;
+    //     setSearchParams({ post: query });
+    // }
 
     const handlePosAnalyst = () => dispatch(filterPositionAnalyst(searchText));
 
@@ -61,7 +61,7 @@ const App = () => {
                         setSearchText={setSearchText}
                         handleSearch={handleSearch}
                         handlePosAnalyst={handlePosAnalyst}
-                        handleSubmit={handleSubmit}
+                    // handleSubmit={handleSubmit}
                     />
                 </Route>
                 <Route exact path='/'>
