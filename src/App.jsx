@@ -11,8 +11,9 @@ import { filterPositionAnalyst } from "./store/workersSlice";
 const App = () => {
     // const [searchParams, setSearchParams] = useSearchParams();
     const workers = useSelector(state => state.workers.workers);
-    const [prof, setProf] = useState(''); // Это, наверное, не нужно
-    const [searchText, setSearchText] = useState('')
+    const [prof, setProf] = useState('');
+    const [searchText, setSearchText] = useState('');
+    const [sortList, setSortList] = useState('1');
     const dispatch = useDispatch();
 
     // const postQuery = searchParams.get('post') || '';
@@ -21,33 +22,43 @@ const App = () => {
     //     const query = form.search.value;
     //     setSearchParams({ post: query });
     // }
-
-    const handlePosAnalyst = () => dispatch(filterPositionAnalyst(searchText));
-
-    const handleSearch = (text) => {
-        setSearchText(text);
-        console.log(text);
-        console.log(workers.filter(({ name, tag }) => [name, tag].some(field => field.includes(text))))
-        return workers.filter(({ name, tag }) => [name, tag].some(field => field.includes(text)));
-    }
-
     useEffect(() => {
         dispatch(fetchWorkers());
     }, [dispatch]);
 
+
+    const handleSearch = (text) => {
+        setSearchText(text);
+        // console.log(text);
+        // console.log(workers.filter(({ name, tag }) => [name, tag].some(field => field.includes(text))))
+        // return workers.filter(({ name, tag }) => [name, tag].some(field => field.includes(text)));
+    }
+
     const filterOnPosition = text => {
-        console.log(text);
+        // console.log(text);
         if (text === 'all') {
             return setProf('');
         }
         setProf(text);
-        console.log(prof);
+        // console.log(prof);
     }
 
     let filteredWorkers = workers;
-    if (prof && !searchText) filteredWorkers = workers.filter(employee => employee.position === prof)
-    else if (searchText) filteredWorkers = workers.filter(({ name, tag }) => [name, tag].some(field => field.includes(searchText)));
+    // if (sortList === '1') filteredWorkers = workers
+    //     .sort((a, b) => a.name - b.name)
+    // else if (sortList === '1') filteredWorkers = workers
+    //     .sort((a, b) => a.birthDate - b.birthDate)
+
+    filteredWorkers = workers
+        .sort((a, b) => a.birthDate - b.birthDate);
+
+    if (prof && !searchText) filteredWorkers = workers
+        .filter(employee => employee.position === prof)
+    else if (searchText) filteredWorkers = workers
+        .filter(({ name, tag }) => [name, tag].some(field => field.includes(searchText)))
     else filteredWorkers = workers;
+
+
 
     return (
         <div className='refresh'>
@@ -60,7 +71,8 @@ const App = () => {
                         searchText={searchText}
                         setSearchText={setSearchText}
                         handleSearch={handleSearch}
-                        handlePosAnalyst={handlePosAnalyst}
+                        sortList={sortList}
+                        setSortList={setSortList}
                     // handleSubmit={handleSubmit}
                     />
                 </Route>

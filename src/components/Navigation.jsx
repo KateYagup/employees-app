@@ -1,24 +1,25 @@
 import React from "react";
 import { useSearchParams } from 'react-router-dom';
+import SortWindow from "./SortWindow";
 
-const Navigation = ({ filterOnPosition, searchText, handleSearch }) => {
-    const [searchParams, setSearchParams] = useSearchParams();
-    const postQuery = searchParams.get('post') || '';
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const query = form.search.value;
-        setSearchParams({ post: query });
-    }
+const Navigation = ({ filterOnPosition, searchText, handleSearch, sortList, setSortList }) => {
+    // const [searchParams, setSearchParams] = useSearchParams();
+    // const postQuery = searchParams.get('post') || '';
+    // const handleSubmit = (e) => {
+    //     e.preventDefault();
+    //     const query = form.search.value;
+    //     setSearchParams({ post: query });
+    // }
 
     return (
         <div className='navigationBar'>
             <div className='statusBar block'>
                 Поиск
             </div>
-            <form autoComplete='off' onSubmit={handleSubmit}>
+            {/* <form autoComplete='off' onSubmit={handleSubmit}>
                 <input type="search" name="search" />
                 <input type="submit" value="Search" />
-            </form>
+            </form> */}
             <div className='header'>
                 <div className='content'>
                     <div className="search"> </div>
@@ -37,6 +38,10 @@ const Navigation = ({ filterOnPosition, searchText, handleSearch }) => {
                 <a href="#" className="filterPosition" data-pos='android' onClick={(e) => filterOnPosition(e.target.dataset.pos)}>iO</a>
                 <a href="#" className="filterPosition" data-pos='android' onClick={(e) => filterOnPosition(e.target.dataset.pos)}>Android</a>
             </div>
+            <SortWindow
+                sortList={sortList}
+                setSortList={setSortList}
+            />
         </div >
     )
 }
