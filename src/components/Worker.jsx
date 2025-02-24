@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Worker = ({ id, name, avatar, position }) => {
+const Worker = ({ id, name, avatar, position, tag }) => {
 
     return (
         <li>
@@ -12,11 +12,15 @@ const Worker = ({ id, name, avatar, position }) => {
                     </Link>
                 </div>
                 <div className='userInfo'>
-                    <Link to={`/employee/${id}`}>{id} </Link>
-                    <div className='userName'>{name}</div>
-                    <div className='userPosition'>{position}</div>
+                    {/* <Link to={`/employee/${id}`}>{id} </Link> */}
+                    <Link to={`/employee/${id}`} className='linkStyle' >
+                        <div >
+                            <p className='user__name'>{name} <span className='user__tag'>{tag}</span></p>
+                            <p className='user__position'>{position}</p>
+                        </div>
+                    </Link>
                 </div>
-            </div>
+            </div >
         </li >
     )
 }

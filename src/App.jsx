@@ -5,6 +5,7 @@ import { fetchWorkers } from "./store/workersSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { BrowserRouter, Route, useSearchParams } from 'react-router-dom';
 import WorkerData from './components/WorkerData';
+import NothingFound from './components/nothingFound/NothingFound';
 import { filterPositionAnalyst } from "./store/workersSlice";
 
 
@@ -43,20 +44,26 @@ const App = () => {
         // console.log(prof);
     }
 
-    let filteredWorkers = workers;
+    // let filteredWorkers = workers;
     // if (sortList === '1') filteredWorkers = workers
     //     .sort((a, b) => a.name - b.name)
     // else if (sortList === '1') filteredWorkers = workers
     //     .sort((a, b) => a.birthDate - b.birthDate)
+    let filteredWorkers;
+    if (sortList === '2') {
+        let copy = [...workers];
+        filteredWorkers = copy
+            .sort((a, b) => a.birthDate > b.birthDate ? 1 : -1);
+    } else if (sortList === '1') {
+        filteredWorkers = workers;
+    }
 
-    filteredWorkers = workers
-        .sort((a, b) => a.birthDate - b.birthDate);
 
-    if (prof && !searchText) filteredWorkers = workers
-        .filter(employee => employee.position === prof)
-    else if (searchText) filteredWorkers = workers
-        .filter(({ name, tag }) => [name, tag].some(field => field.includes(searchText)))
-    else filteredWorkers = workers;
+    // if (prof && !searchText) filteredWorkers = workers
+    //     .filter(employee => employee.position === prof)
+    // else if (searchText) filteredWorkers = workers
+    //     .filter(({ name, tag }) => [name, tag].some(field => field.includes(searchText)))
+    // else filteredWorkers = workers;
 
 
 
@@ -82,6 +89,7 @@ const App = () => {
                 <Route path='/employee/:id'>
                     <WorkerData />
                 </Route>
+                <NothingFound />
             </BrowserRouter>
         </div>
     )
