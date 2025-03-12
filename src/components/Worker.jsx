@@ -6,12 +6,12 @@ const Worker = ({ id, name, avatar, position, tag }) => {
     return (
         <li>
             <div className="user">
-                <div className="avatar">
+                <div className="user__avatar">
                     <Link to='/d'>
                         <img src={avatar} alt="" style={{ "height": '74px', 'border-radius': '50%' }} />
                     </Link>
                 </div>
-                <div className='userInfo'>
+                <div className=' user__description'>
                     {/* <Link to={`/employee/${id}`}>{id} </Link> */}
                     <Link to={`/employee/${id}`} className='linkStyle' >
                         <div >

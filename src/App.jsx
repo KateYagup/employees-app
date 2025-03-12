@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import Navigation from './components/Navigation';
+import Navigation from './components/navigation/Navigation';
+
+import NothingFound from './components/nothingFound/NothingFound';
 import WorkersList from './components/WorkersList';
 import { fetchWorkers } from "./store/workersSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { BrowserRouter, Route, useSearchParams } from 'react-router-dom';
-import WorkerData from './components/WorkerData';
-import NothingFound from './components/nothingFound/NothingFound';
-import { filterPositionAnalyst } from "./store/workersSlice";
-
+import WorkerData from './components/workerData/WorkerData';
 
 const App = () => {
     // const [searchParams, setSearchParams] = useSearchParams();
@@ -58,20 +57,20 @@ const App = () => {
         filteredWorkers = workers;
     }
 
+    if (prof && !searchText) filteredWorkers = workers
+        .filter(employee => employee.position === prof)
+    else if (searchText) filteredWorkers = workers
+        .filter(({ name, tag }) => [name, tag].some(field => field.includes(searchText)))
+    else filteredWorkers = workers;
 
-    // if (prof && !searchText) filteredWorkers = workers
-    //     .filter(employee => employee.position === prof)
-    // else if (searchText) filteredWorkers = workers
-    //     .filter(({ name, tag }) => [name, tag].some(field => field.includes(searchText)))
-    // else filteredWorkers = workers;
-
-
+    // console.log(filteredWorkers);
+    let showNothinFound = false;
+    if (filteredWorkers.length === 0) { showNothinFound = true }
+    // console.logc
 
     return (
         <div className='refresh'>
-
             <BrowserRouter>
-
                 <Route exact path='/'>
                     <Navigation
                         filterOnPosition={filterOnPosition}
@@ -82,6 +81,7 @@ const App = () => {
                         setSortList={setSortList}
                     // handleSubmit={handleSubmit}
                     />
+                    {showNothinFound && <NothingFound />}
                 </Route>
                 <Route exact path='/'>
                     <WorkersList workers={filteredWorkers} />
@@ -89,7 +89,7 @@ const App = () => {
                 <Route path='/employee/:id'>
                     <WorkerData />
                 </Route>
-                <NothingFound />
+
             </BrowserRouter>
         </div>
     )

@@ -1,0 +1,62 @@
+.workerData {
+  &__top {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 24px 0;
+  }
+  &__name {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 28px;
+    letter-spacing: 0%;
+    text-align: center;
+    margin-top: 24px;
+    margin-bottom: 12px;
+  }
+  &__tag {
+    color: #97979b;
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 22px;
+    letter-spacing: 0%;
+    text-align: center;
+  }
+
+  &__position {
+    color: #55555c;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    letter-spacing: 0%;
+    text-align: center;
+  }
+  &__birth {
+    padding: 12px 0;
+    margin-bottom: 6px;
+  }
+  &__birth-data {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    // align-items: center;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0%;
+  }
+  &__age {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: 0%;
+    text-align: right;
+    color: #97979b;
+  }
+  &__phone {
+    height: 60px;
+    display: flex;
+    align-items: center;
+  }
+}

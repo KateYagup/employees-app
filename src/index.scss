@@ -1,9 +1,12 @@
 * {
   box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Inter, sans-serif;
+  color: #050510;
 }
 
 .block {
@@ -15,34 +18,38 @@ body {
 }
 
 .refresh {
-  border: dashed aqua 1px;
-  width: 375px;
+  // border: dashed aqua 1px;
+  // width: 375px;
+  width: 100%;
   margin: auto;
+  padding: 10px 16px;
 }
 
-.header {
-  height: 52px;
-  padding: 6px 16px;
-  border: dashed aqua 1px;
-}
-.content {
-  border: dashed blue 1px;
-  height: 40px;
-  padding: 8px 12px;
-  display: flex;
-  flex-direction: row;
-}
 .user {
   height: 80px;
-  border: solid blueviolet 1px;
+  // border: solid blueviolet 1px;
   display: flex;
+  align-items: center;
   text-decoration: none;
+  margin-bottom: 4px;
+
+  &__avatar {
+    height: 72px;
+    width: 72px;
+    margin-right: 16px;
+  }
+  &__description {
+    padding: 7px 0;
+  }
+
   &__name {
     font-family: Inter;
     font-weight: 500;
     font-size: 16px;
     line-height: 20px;
     letter-spacing: 0%;
+    color: #050510;
+    margin: 0;
   }
 
   &__tag {
@@ -61,6 +68,7 @@ body {
     line-height: 16px;
     letter-spacing: 0%;
     color: #55555c;
+    margin: 0;
   }
 }
 
@@ -68,29 +76,6 @@ body {
   list-style-type: none;
   border: solid blueviolet 1px;
   padding: 0;
-}
-
-.avatar {
-  height: 84px;
-  width: 88px;
-}
-
-.userInfo {
-  padding: 7px;
-}
-
-.positions {
-  display: flex;
-  align-items: center;
-  overflow-x: scroll;
-  scrollbar-width: thin;
-  scrollbar-color: #c3c3c6 #f7f7f8;
-}
-
-.filterPosition {
-  padding: 8px 12px;
-  text-decoration: none;
-  color: #000;
 }
 
 .menu {

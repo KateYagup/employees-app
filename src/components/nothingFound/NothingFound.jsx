@@ -1,4 +1,6 @@
 import React from "react";
+import './nothingFound.scss'
+
 const NothingFound = () => {
     return (
         <div className="found">
