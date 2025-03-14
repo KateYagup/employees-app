@@ -9,7 +9,7 @@ import { BrowserRouter, Route, useSearchParams } from 'react-router-dom';
 import WorkerData from './components/workerData/WorkerData';
 
 const App = () => {
-    // const [searchParams, setSearchParams] = useSearchParams();
+    const [searchParams, setSearchParams] = useSearchParams();
     const workers = useSelector(state => state.workers.workers);
     const [prof, setProf] = useState('');
     const [searchText, setSearchText] = useState('');
