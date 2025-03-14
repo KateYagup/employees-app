@@ -38,7 +38,6 @@
     "react-redux": "^9.1.2",
     "react-router": "^6.25.1",
     "react-router-dom": "^6.25.1",
-    "redux-thunk": "^3.1.0",
     "reselect": "^5.1.1"
   }
 }
