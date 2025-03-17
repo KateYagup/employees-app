@@ -50,10 +50,9 @@ const Navigation = ({ filterOnPosition, searchText, handleSearch, sortList, setS
             </div>
 
             <div className="positions">
-                <Link to='/?position=analyst'>
-                    {/* <a href="#">analyst</a> */}
+                {/* <Link to='/?position=analyst'>
                     analyst
-                </Link>
+                </Link> */}
 
                 {positionsButtons.map((pos) => {
                     return <button

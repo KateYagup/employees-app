@@ -5,11 +5,11 @@ import NothingFound from './components/nothingFound/NothingFound';
 import WorkersList from './components/WorkersList';
 import { fetchWorkers } from "./store/workersSlice";
 import { useSelector, useDispatch } from "react-redux";
-import { BrowserRouter, Route, useSearchParams } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useSearchParams } from 'react-router-dom';
 import WorkerData from './components/workerData/WorkerData';
 
 const App = () => {
-    const [searchParams, setSearchParams] = useSearchParams();
+    // const [searchParams, setSearchParams] = useSearchParams();
     const workers = useSelector(state => state.workers.workers);
     const [prof, setProf] = useState('');
     const [searchText, setSearchText] = useState('');
@@ -29,25 +29,15 @@ const App = () => {
 
     const handleSearch = (text) => {
         setSearchText(text);
-        // console.log(text);
-        // console.log(workers.filter(({ name, tag }) => [name, tag].some(field => field.includes(text))))
-        // return workers.filter(({ name, tag }) => [name, tag].some(field => field.includes(text)));
     }
 
     const filterOnPosition = text => {
-        // console.log(text);
         if (text === 'all') {
             return setProf('');
         }
         setProf(text);
-        // console.log(prof);
     }
 
-    // let filteredWorkers = workers;
-    // if (sortList === '1') filteredWorkers = workers
-    //     .sort((a, b) => a.name - b.name)
-    // else if (sortList === '1') filteredWorkers = workers
-    //     .sort((a, b) => a.birthDate - b.birthDate)
     let filteredWorkers;
     if (sortList === '2') {
         let copy = [...workers];
@@ -57,39 +47,41 @@ const App = () => {
         filteredWorkers = workers;
     }
 
+
     if (prof && !searchText) filteredWorkers = workers
         .filter(employee => employee.position === prof)
     else if (searchText) filteredWorkers = workers
         .filter(({ name, tag }) => [name, tag].some(field => field.includes(searchText)))
     else filteredWorkers = workers;
 
-    // console.log(filteredWorkers);
+    console.log(filteredWorkers);
     let showNothinFound = false;
     if (filteredWorkers.length === 0) { showNothinFound = true }
-    // console.logc
 
     return (
         <div className='refresh'>
+            {showNothinFound && <NothingFound />}
             <BrowserRouter>
-                <Route exact path='/'>
-                    <Navigation
-                        filterOnPosition={filterOnPosition}
-                        searchText={searchText}
-                        setSearchText={setSearchText}
-                        handleSearch={handleSearch}
-                        sortList={sortList}
-                        setSortList={setSortList}
-                    // handleSubmit={handleSubmit}
+                <Routes>
+                    <Route exact path='/'
+                        element={<Navigation
+                            filterOnPosition={filterOnPosition}
+                            searchText={searchText}
+                            setSearchText={setSearchText}
+                            handleSearch={handleSearch}
+                            sortList={sortList}
+                            setSortList={setSortList}
+                        // handleSubmit={handleSubmit}
+                        />}
                     />
-                    {showNothinFound && <NothingFound />}
-                </Route>
-                <Route exact path='/'>
-                    <WorkersList workers={filteredWorkers} />
-                </Route>
-                <Route path='/employee/:id'>
-                    <WorkerData />
-                </Route>
-
+                    {/* {showNothinFound && <NothingFound />} */}
+                    <Route path='/'
+                        element={
+                            <WorkersList workers={filteredWorkers} />
+                        }
+                    />
+                    <Route path='/employee/:id' element={<WorkerData />} />
+                </Routes>
             </BrowserRouter>
         </div>
     )
