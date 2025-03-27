@@ -1,3 +1,23 @@
-.found {
-  background-color: aqua;
+.nothing_page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 119px;
+}
+.nobody {
+  font-family: Inter;
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 22px;
+  letter-spacing: 0%;
+  text-align: center;
+}
+.query {
+  font-family: Inter;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0%;
+  text-align: center;
 }

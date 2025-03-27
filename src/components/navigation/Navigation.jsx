@@ -1,13 +1,14 @@
 import React, { useState } from "react";
-import { useSearchParams } from 'react-router-dom';
 import SortWindow from "../SortWindow";
 import { Link } from 'react-router-dom';
 import './navigation.scss';
+import { useSearchParams } from "react-router-dom";
 
-const Navigation = ({ filterOnPosition, searchText, handleSearch, sortList, setSortList }) => {
-
+const Navigation = () => {
+    const [searchParams, setSearchParams] = useSearchParams();
     const [visibleSortWindow, setVisibleSortWindow] = useState(false);
-    const [activePosition, setActivePosition] = useState('2');
+    const [activePosition, setActivePosition] = useState('0');
+    const [searchText, setSearchText] = useState();
     const highlight = "filterPosition activeFilter";
     const positionsButtons = [
         { "id": "0", "pos": "All" },
@@ -17,12 +18,27 @@ const Navigation = ({ filterOnPosition, searchText, handleSearch, sortList, setS
         { "id": 4, "pos": "iO" },
         { "id": 5, "pos": "Android" },
     ];
-
-    const handleActivePosition = (e) => {
-        setActivePosition(e.target.value);
-        console.log(e.target.value);
-        filterOnPosition(positionsButtons[activePosition].pos.toLowerCase())
-        console.log(positionsButtons[activePosition].pos.toLowerCase());
+    const handlePosition = (e) => {
+        setSearchParams(prevParams => {
+            const params = new URLSearchParams(prevParams);
+            if (e.target.value == 0) {
+                params.delete('position')
+            } else if (Number(e.target.value) > 0) {
+                params.set('position', positionsButtons[Number(e.target.value)].pos.toLowerCase())
+            }
+            return params;
+        })
+    }
+    const handleSearchText = e => {
+        setSearchParams(prevParams => {
+            const params = new URLSearchParams(prevParams);
+            if (e.target.value === '') {
+                params.delete('searchText')
+            } else if (String(e.target.value)) {
+                params.set('searchText', searchText)
+            }
+            return params;
+        })
     }
 
     return (
@@ -38,7 +54,11 @@ const Navigation = ({ filterOnPosition, searchText, handleSearch, sortList, setS
                         type="text"
                         className="navigation__text"
                         value={searchText}
-                        onChange={(e) => handleSearch(e.target.value)}
+                        onChange={(e) => {
+                            setSearchText(e.target.value),
+                                handleSearchText(e)
+                            //     setSearchParams({ searchText: e.target.value })
+                        }}
                         placeholder='Введите имя, тэг, почту...'
                     />
                     <button className="menu" onClick={() => setVisibleSortWindow(true)}>
@@ -48,18 +68,16 @@ const Navigation = ({ filterOnPosition, searchText, handleSearch, sortList, setS
                     </button>
                 </div>
             </div>
-
             <div className="positions">
-                {/* <Link to='/?position=analyst'>
-                    analyst
-                </Link> */}
-
                 {positionsButtons.map((pos) => {
                     return <button
                         className={pos.id == activePosition ? "filterPosition activeFilter" : "filterPosition"}
                         value={pos.id}
                         data-pos={pos.pos.toLocaleLowerCase()}
-                        onClick={(e) => { setActivePosition(e.target.value); filterOnPosition(e.target.dataset.pos) }}
+                        onClick={(e) => {
+                            setActivePosition(e.target.value);
+                            handlePosition(e);
+                        }}
                     >
                         {pos.pos}
                     </button>
@@ -68,8 +86,6 @@ const Navigation = ({ filterOnPosition, searchText, handleSearch, sortList, setS
             <div className="separatorLine"></div>
             {
                 visibleSortWindow && <SortWindow
-                    sortList={sortList}
-                    setSortList={setSortList}
                     setVisibleSortWindow={setVisibleSortWindow}
                 />
             }

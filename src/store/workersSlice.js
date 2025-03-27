@@ -2,7 +2,6 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 const baseUrl = 'https://66a0f8b17053166bcabd894e.mockapi.io/api/workers';
 
-
 export const fetchWorkers = createAsyncThunk(
     'workers/fetchWorkers',
     async function () {
@@ -16,6 +15,7 @@ const workersSlice = createSlice({
     name: 'workers',
     initialState: {
         workers: [],
+        status: null,
     },
     extraReducers(builder) {
         builder.addCase(fetchWorkers.pending, (state) => {
