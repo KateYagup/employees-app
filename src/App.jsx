@@ -1,6 +1,6 @@
 import React from 'react';
 import Navigation from './components/navigation/Navigation';
-import WorkersList from './components/WorkersList';
+import WorkersList from './components/workersList/WorkersList';
 import { BrowserRouter, Routes, Route, useSearchParams } from 'react-router-dom';
 import WorkerData from './components/workerData/WorkerData';
 

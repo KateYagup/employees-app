@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useSearchParams } from "react-router-dom";
+import './sortWindow.scss';
 
 const SortWindow = ({ setVisibleSortWindow }) => {
     const [value, setValue] = useState();

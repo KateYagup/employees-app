@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import SortWindow from "../SortWindow";
+import SortWindow from "../sortWindow/SortWindow";
 import { Link } from 'react-router-dom';
 import './navigation.scss';
 import { useSearchParams } from "react-router-dom";

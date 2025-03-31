@@ -1,0 +1,60 @@
+.userWithBirth {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  &__birth {
+  }
+}
+
+.user {
+  height: 80px;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  margin-bottom: 4px;
+
+  &__avatar {
+    height: 72px;
+    width: 72px;
+    margin-right: 16px;
+  }
+  &__description {
+    padding: 7px 0;
+  }
+
+  &__name {
+    font-family: Inter;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: 0%;
+    color: #050510;
+    margin: 0;
+  }
+
+  &__tag {
+    font-family: Inter;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: 0%;
+    color: #97979b;
+  }
+
+  &__position {
+    font-family: Inter;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    letter-spacing: 0%;
+    color: #55555c;
+    margin: 0;
+  }
+  &__birth {
+    font-size: 15px;
+    font-weight: 400;
+    color: #55555c;
+    margin-left: auto;
+  }
+}

@@ -3,7 +3,11 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 119px;
+  margin-top: 80px;
+}
+
+.nobody_block {
+  margin-top: 8px;
 }
 .nobody {
   font-family: Inter;
@@ -13,6 +17,10 @@
   letter-spacing: 0%;
   text-align: center;
 }
+
+.query_block {
+  margin-top: 12px;
+}
 .query {
   font-family: Inter;
   font-weight: 400;
@@ -20,4 +28,5 @@
   line-height: 20px;
   letter-spacing: 0%;
   text-align: center;
+  color: #97979b;
 }
