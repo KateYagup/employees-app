@@ -28,9 +28,7 @@ const WorkersList = () => {
                 (!searchText || [name, tag, email]
                     .some(field => field.includes(searchText)))
         )
-        // console.log('filteredData');
-        // console.log(filteredData.length);
-        // console.log(sortBy);
+
         return sortBy ? filteredData.sort((a, b) => a.birthDate > b.birthDate ? 1 : -1)
             : filteredData
     }, [searchParams, workers]);
