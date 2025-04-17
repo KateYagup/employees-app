@@ -1,11 +1,9 @@
-import { createStore, combineReducers, compose, applyMiddleware } from 'redux';
+import { combineReducers, compose, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-// import tasksReducer from './tasks/tasks.reducer';
 import workersReducer from './store/workersSlice';
 
-
 const reducer = combineReducers({
-    workers: workersReducer,
+  workers: workersReducer,
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
