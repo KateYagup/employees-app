@@ -4,7 +4,7 @@
 
 ### Devices support 
 
-- [desktop]
+- desktop
 
 ### The tech stack is:
 
